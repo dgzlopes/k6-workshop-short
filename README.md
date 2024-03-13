@@ -514,11 +514,11 @@ Let's change our script to use scenarios and rerun the test. If you are running 
 
 > TIP: You can use `exec` to run a specific function in your script instead of the default function. For example, you could configure a scenario to run the `functionA` function, and another scenario to run the `functionB` function. If you don't specify an `exec` property, k6 will run the default function.
 
-You can learn more about scenarios [in our docs](https://k6.io/docs/using-k6/scenarios/).
+You can learn more about scenarios [in our docs](https://grafana.com/docs/k6/latest/using-k6/scenarios/).
 
 ### 3.2. Modules
 
-k6 provides many built-in modules for core functionalities. For example, the http client make requests against the system under test. For the full list of built-in modules, refer to the [API documentation](https://k6.io/docs/javascript-api/).
+k6 provides many built-in modules for core functionalities. For example, the http client make requests against the system under test. For the full list of built-in modules, refer to the [API documentation](https://grafana.com/docs/k6/latest/javascript-api/).
 
 But you can also create your own modules! You can use modules to share code between scripts or build a library of functions you can use in your scripts.
 
@@ -548,14 +548,10 @@ console.log(getPizzaName(res));
 Then, rerun the script. You should see an additional log line with the pizza name in the output.
 
 ```bash
-# If you have k6 installed
 k6 run example.js
-
-# If you don't have k6 installed (you need to mount the extra file)
-docker run -i --network=k6-workshop_default -v $(pwd)/utils.js:/utils.js grafana/k6 run -e BASE_URL=http://quickpizza:3333  - <example.js
 ```
 
-You can learn more about modules [in our docs](https://k6.io/docs/using-k6/modules/).
+You can learn more about modules [in our docs](https://grafana.com/docs/k6/latest/using-k6/modules/).
 
 ### 3.3. More stuff
 
@@ -614,29 +610,14 @@ There are things in the script that we have already talked about, like Checks an
 To run this script, you must have a Chromium browser installed if you run k6 locally:
 
 ```bash
-# If you have k6 installed
 k6 run browser.js
-```
-
-If you want to use Docker, you can:
-
-```bash
-docker run -i --network=k6-workshop_default --cap-add=SYS_ADMIN grafana/k6:master-with-browser run  -e BASE_URL=http://quickpizza:3333 - <browser.js
-
-# Find the container ID of that container you just ran
-docker container ls -a
-
-# Copy the screenshot to your local machine
-docker cp <container_id>:/home/k6/screenshot.png .
-
-# Note: If you are using a MacBook M1/M2 --> Make sure you have rosetta installed and virtualization enabled in Docker.
 ```
 
 Then, open the `screenshot.png` file. You should see a screenshot of the QuickPizza page with a pizza recommendation.
 
 Also, you should be able to see the Checks we have defined in the output. Plus, lots of new metrics! These metrics are related to the performance of the page. You can use them to understand how your page is performing and how it is affecting your users. Lots of them are [Web Vitals metrics](https://web.dev/vitals/), which are a set of metrics that Google recommends to measure the user experience on the web.
 
-You can learn more about the Browser APIs [in our docs](https://k6.io/docs/using-k6-browser/overview/).
+You can learn more about the Browser APIs [in our docs](https://grafana.com/docs/k6/latest/using-k6-browser/).
 
 #### 3.3.2. Composability
 
@@ -737,17 +718,17 @@ export async function checkFrontend() {
 
 That's it. Now, you should be able to run it as you would do with any test, and you get the best of both worlds!
 
-You can read more about that scenario in [this section](https://k6.io/docs/using-k6-browser/running-browser-tests/#run-both-browser-level-and-protocol-level-tests-in-a-single-script) of our docs.
+You can read more about that scenario in [this section](https://grafana.com/docs/k6/latest/using-k6-browser/recommended-practices/hybrid-approach-to-performance/) of our docs.
 
 #### 3.3.3. Extensions
 
 With k6 extensions, you can create custom k6 binaries to support your specific reliability-testing needs. These are written in Go and can be used to extend k6 with new protocols, outputs, etc. For example, you could create an extension to support a new protocol, like Kafka. Or, you could make an extension to export your metrics to a new backend, like InfluxDB.
 
-Many extensions (official and from the community) are already available. Lots of them are available in our [extension registry](https://k6.io/docs/extensions/get-started/bundle/).
+Many extensions (official and from the community) are already available. Lots of them are available in our [extension registry](https://grafana.com/docs/k6/latest/extensions/explore/).
 
-Once you have an extension you want to try, you can easily build a new k6 binary that has it [with our Docker instructions](https://k6.io/docs/extensions/guides/build-a-k6-binary-using-docker/).
+Once you have an extension you want to try, you can easily build a new k6 binary that has it [with our Docker instructions](https://grafana.com/docs/k6/latest/extensions/build-k6-binary-using-docker/).
 
-If you want to learn more about extensions, you can [check our docs](https://k6.io/docs/extensions/). If you want to create your own (spoiler: it is pretty easy), you can read this [little guide](https://k6.io/docs/extensions/get-started/create/).
+If you want to learn more about extensions, you can [check our docs](https://grafana.com/docs/k6/latest/extensions/). If you want to create your own (spoiler: it is pretty easy), you can read this [little guide](https://grafana.com/docs/k6/latest/extensions/create/).
 
 #### 3.3.4. WebSockets
 
@@ -787,14 +768,12 @@ Then, open QuickPizza in a new tab (or refresh the existing tab), and run this t
 
 ![nudge](./media/nudge.png)
 
-> NOTE: If you run it with Docker, adapt the BASE_URL to `ws://quickpizza:3333`.
-
 The example above will run forever. Not good. In a real situation, you would use sessions/timers and more fancy stuff, but this should at least give you a basic idea of how you can use WebSockets in k6.
 
-You can learn more about WebSockets [in our docs](https://k6.io/docs/javascript-api/k6-experimental/websockets/).
+You can learn more about WebSockets [in our docs](https://grafana.com/docs/k6/latest/javascript-api/k6-experimental/websockets/).
 
 Wow, if you have reached this point, you have learned a lot about k6. But there is more!
 
-Our docs page is the best place to learn about all the things we missed and more: https://k6.io/docs/
+Our docs page is the best place to learn about all the things we missed and more: https://grafana.com/docs/k6/latest/
 
 Still, here are a few things that we have missed that you might find interesting.
