@@ -165,8 +165,6 @@ What's k6 doing?
 - Then, it will stay at 10 VUs for 10 seconds.
 - Finally, it will ramp down from 10 to 0 VUs in 5 seconds.
 
-> NOTE: The output will be messy if you use Docker to run this test. You can fix that by adding the `--quiet` flag to the k6 command. Why? B/c while using the CLI, you would get a very nice progress bar, telling you how many VUs are running and how your test behaves in real-time. However, when using Docker, k6 will output the progress bar in the logs.
-
 > TIP: You can always finish the test early by pressing CTRL+C. The summary will still be generated for the data k6 has collected so far.
 
 ### 1.3. Checks
@@ -308,10 +306,6 @@ let res = http.post(`${BASE_URL}/api/pizza`, JSON.stringify(restrictions), {
 
 That way, we will pick a random customer from the list of customers. Then, rerun the script.
 
-If you check the logs of the QuickPizza service, you should see that the customer id that we attach to every log line is changing all the time.
-
-You verify this by running `docker-compose logs quickpizza`.
-
 You can learn more about data parameterization in k6 [in our docs](https://grafana.com/docs/k6/latest/examples/data-parameterization/).
 
 ### 1.7. More stuff
@@ -380,7 +374,7 @@ Then, you can use it in your script with the `__ENV` object:
 console.log(__ENV.MY_ENV_VAR);
 ```
 
-If you noticed, we have been using the `BASE_URL` environment variable to pass the URL of the QuickPizza service to our script. That's why we can run the same script locally and in Docker without changing anything!
+If you noticed, we have been using the `BASE_URL` environment variable to pass the URL of the QuickPizza service to our script. 
 
 You can learn more about [how options work](https://grafana.com/docs/k6/latest/using-k6/k6-options/how-to/) and [environment variables](https://grafana.com/docs/k6/latest/using-k6/environment-variables/) in our docs.
 
