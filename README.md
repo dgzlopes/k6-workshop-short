@@ -466,7 +466,7 @@ To run the test in our cloud, you just need to use the `k6 cloud` command instea
 k6 cloud example.js
 ```
 
-By default it will run in our Ashburn load zone. You can change [customize this behaviour](https://grafana.com/docs/grafana-cloud/k6/author-run/use-load-zones/).
+By default it will run in our Columbus load zone. You can change [customize this behaviour](https://grafana.com/docs/grafana-cloud/k6/author-run/use-load-zones/).
 
 ## 3. More things
 
